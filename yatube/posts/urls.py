@@ -1,8 +1,6 @@
-# posts/urls.py
 from django.urls import path
 
 from . import views
-# namespace должен быть объявлен при include и тут, в app_name
 app_name = 'posts'
 
 urlpatterns = [

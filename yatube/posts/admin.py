@@ -3,6 +3,7 @@ from django.contrib import admin
 from .models import Group, Post
 
 
+@admin.register
 class GroupAdmin(admin.ModelAdmin):
     list_display = (
         'pk',
@@ -29,5 +30,4 @@ class PostAdmin(admin.ModelAdmin):
     list_editable = ('group',)
 
 
-admin.site.register(Post, PostAdmin)
-admin.site.register(Group, GroupAdmin)
+

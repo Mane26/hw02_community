@@ -1,10 +1,11 @@
-from django.db import models
 from django.contrib.auth import get_user_model
+from django.db import models
 
 User = get_user_model()
 
 
 class Group(models.Model):
+    """Создание модели для таблицы Сообщества."""
     title = models.CharField(max_length=200, verbose_name='Group title')
     slug = models.SlugField(unique=True, verbose_name='Relative URL')
     description = models.TextField(
@@ -17,11 +18,8 @@ class Group(models.Model):
 
 
 class Post(models.Model):
-    # Тип: TextField
+    """Создание модели для таблицы Постов."""
     text = models.TextField()
-    # Тип поля: DateTimeField, для хранения даты и времени;
-    # параметр auto_now_add определяет, что в поле будет автоматически
-    # подставлено время и дата создания новой записи
     pub_date = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Дата публикации',
@@ -30,12 +28,12 @@ class Post(models.Model):
         Group,
         blank=True,
         null=True,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         related_name='posts'
     )
-    # Тип: ForeignKey, ссылка на модель User
     author = models.ForeignKey(
         User,
+        null=True,
         on_delete=models.CASCADE,
         related_name='posts'
     )
