@@ -28,6 +28,3 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ('pub_date',)
     empty_value_display = '-пусто-'
     list_editable = ('group',)
-
-
-
